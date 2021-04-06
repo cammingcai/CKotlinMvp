@@ -3,7 +3,15 @@
 
 
 
-
+    <declare-styleable name="FlashRelativeLayout">
+        <attr name="radius" format="dimension" />
+        <attr name="topLeftRadius" format="dimension" />
+        <attr name="topRightRadius" format="dimension" />
+        <attr name="bottomLeftRadius" format="dimension" />
+        <attr name="bottomRightRadius" format="dimension" />
+        <attr name="isShowBorder" format="boolean" />
+        <attr name="borderColor" format="integer" />
+    </declare-styleable>
 
 
     <declare-styleable name="XLoadingView">

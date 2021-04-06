@@ -24,7 +24,7 @@ abstract class XKotlinBaseActivit<P : BasePresenter<*>>: BaseActivity() {
         mvpPresenter = createPresenter()
         super.onCreate(savedInstanceState)
         StatusBarUtil.immersive(this)
-        StatusBarUtil.justMDarkMode(this, mIsDarkMode)
+//        StatusBarUtil.justMDarkMode(this, mIsDarkMode)
 
     }
     protected abstract fun createPresenter(): P

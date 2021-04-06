@@ -1,0 +1,83 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.CustomAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/colorAccent</item>
+
+    </style>
+
+    <style name="bottom_int_out_dialog_style" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_out</item>
+    </style>
+
+    <style name="bottom_int_out_dialog_style2" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_bottom_out</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_in</item>
+    </style>
+
+
+
+
+
+    <style name="LoadingDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowSoftInputMode">stateHidden|adjustResize</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+
+    <style name="HRRobotCheckBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">100</item>
+    <!--    <item name="android:textColor">@drawable/hr_robot_checkbox_text</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style parent="HRRobotCheckBox" name="HRRobotCheckBoxLeft">
+        <item name="android:text">robot1</item>
+        <item name="android:checked">true</item>
+    <!--    <item name="android:background">@drawable/hr_robot_checkbox_left</item>-->
+    </style>
+
+
+    <style parent="HRRobotCheckBox" name="HRRobotCheckBoxMiddle">
+        <item name="android:text">robot2</item>
+<!--        <item name="android:background">@drawable/hr_robot_checkbox_middle</item>-->
+    </style>
+
+
+    <style parent="HRRobotCheckBox" name="HRRobotCheckBoxRight">
+        <item name="android:text">robot3</item>
+      <!--  <item name="android:background">@drawable/hr_robot_checkbox_right</item>-->
+    </style>
+
+    <style parent="HRRobotCheckBox" name="HRScanScore">
+        <item name="android:text">扫码评分</item>
+        <item name="android:checked">true</item>
+<!--        <item name="android:background">@drawable/hr_rectangle_white_select_20</item>-->
+    </style>
+
+    <style parent="HRRobotCheckBox" name="HRScanSignIn">
+        <item name="android:text">扫码签到</item>
+<!--        <item name="android:background">@drawable/hr_rectangle_white_select_20</item>-->
+    </style>
+
+</resources>

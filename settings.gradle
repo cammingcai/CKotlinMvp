@@ -1,0 +1,4 @@
+include ':MvpLibrary'
+include ':holle'
+include ':app'
+rootProject.name = "KotlinMvp"

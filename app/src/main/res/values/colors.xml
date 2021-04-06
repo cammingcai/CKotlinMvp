@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <!--    强调色-->
+    <color name="colorAccent">#00a384</color>
+    <color name="c00a384">#00a384</color>
+    <color name="bg_f3f4f5">#F3F4F5</color>
+    <!--    常用色-->
+    <color name="common_back">#f8f9fa</color>
+    <color name="list_back">#EBF0F1</color>
+    <color name="common_orange">#fa6400</color>
+    <color name="common_text">#444444</color>
+    <color name="common_sub">#93a2ac</color>
+    <color name="common_hint">#4b6184</color>
+    <color name="price">#FA6400</color>
+
+    <color name="line_color">#E1E5E8</color>
+    <color name="c454545">#454545</color>
+    <color name="c999999">#999999</color>
+    <color name="c444444">#444444</color>
+    <color name="c93a2ac">#93A2AC</color>
+    <color name="c456187">#456187</color>
+    <color name="red">#ff0000</color>
+    <color name="c4b6184">#4b6184</color>
+    <color name="fa6400">#FA6400</color>
+    <color name="c80000000">#80000000</color>
+    <color name="c4B6184">#4B6184</color>
+    <color name="cccccc">#cccccc</color>
+    <color name="f8f9fa">#F8F9FA</color>
+    <color name="c034537">#034537</color>
+    <color name="ff6d71">#ff6d71</color>
+    <color name="golden_F6DAB2">#F6DAB2</color>
+    <color name="shallow_golden_A19080">#A19080</color>
+    <color name="scan_mark_b6">#b6000000</color>
+    <color name="c464646">#464646</color>
+    <color name="c080809">#080809</color>
+    <color name="ca19080">#A19080</color>
+    <color name="f6dab2">#f6dab2</color>
+    <color name="c71471d">#71471D</color>
+    <color name="e1e5e8">#e1e5e8</color>
+    <color name="c887a66">#887A66</color>
+</resources>

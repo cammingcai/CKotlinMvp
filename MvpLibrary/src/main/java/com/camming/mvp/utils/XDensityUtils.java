@@ -110,17 +110,17 @@ public class XDensityUtils {
      * 获取屏幕的宽度
      * @return
      */
-//    public static int getScreenWidth() {
-//        return XFrame.getDisplayMetrics().widthPixels;
-//    }
+    public static int getScreenWidth(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
 
     /**
      * 获取屏幕的高度
      * @return
      */
-//    public static int getScreenHeight() {
-//        return XFrame.getDisplayMetrics().heightPixels;
-//    }
+    public static int getScreenHeight(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
+    }
 
     /**
      * 获取屏幕真正的高度

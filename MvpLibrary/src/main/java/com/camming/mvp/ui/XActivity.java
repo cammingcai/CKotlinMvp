@@ -32,11 +32,14 @@ public abstract class XActivity extends AppCompatActivity {
         }
         initView();
         initData();
+        initListener();
     }
     /**初始化布局*/
     protected abstract void initView();
     /**初始化数据*/
     protected abstract void initData();
+    /**初始化监听*/
+    protected abstract void initListener();
     /**设置布局UI xml*/
     protected abstract int initLayoutId();
 

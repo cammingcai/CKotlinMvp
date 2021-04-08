@@ -3,7 +3,7 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#ffffff</color>
     <!--    强调色-->
-    <color name="colorAccent">#00a384</color>
+    <color name="colorAccent">#f8f9fa</color>
     <color name="c00a384">#00a384</color>
     <color name="bg_f3f4f5">#F3F4F5</color>
     <!--    常用色-->

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <FrameLayout
+        android:id="@+id/fl_view"
+        android:layout_width="370dp"
+        android:layout_height="500dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/group_class_share"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="40dp"
+            android:src="@mipmap/login_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="140dp"
+            android:text="我是测试的内容"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="240dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/ff6d71"
+            android:textSize="30sp"
+            android:text="我是测试的内容"
+            />
+    </FrameLayout>

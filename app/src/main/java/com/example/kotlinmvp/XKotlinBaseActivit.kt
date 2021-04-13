@@ -1,5 +1,7 @@
 package com.example.kotlinmvp
 
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.view.DisplayCutout
@@ -27,6 +29,16 @@ abstract class XKotlinBaseActivit<P : BasePresenter<*>>: BaseActivity() {
 //        StatusBarUtil.justMDarkMode(this, mIsDarkMode)
 
     }
+
+    override fun getResources(): Resources {
+        // 字体大小不跟随系统
+        val res = super.getResources()
+        val config = Configuration()
+        config.setToDefaults()
+        res.updateConfiguration(config, res.displayMetrics)
+        return res
+    }
+
     protected abstract fun createPresenter(): P
     //适配刘海屏相关
     fun getNotchHeight(onOk: (height: Int) -> Unit){

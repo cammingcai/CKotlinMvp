@@ -1,6 +1,9 @@
 package com.example.kotlinmvp
 
 import android.Manifest
+import android.animation.ArgbEvaluator
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.Log
@@ -10,11 +13,12 @@ import com.camming.mvp.utils.*
 import com.example.kotlinmvp.mvp.MvpKtPresenter
 import com.example.kotlinmvp.utils.FileHelper
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_generate_img.*
+
+import kotlin.concurrent.fixedRateTimer
 
 class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 
-    override fun initLayoutId()  = R.layout.activity_scorllview
+    override fun initLayoutId()  = R.layout.activity_main
 
     override fun initData() {
 //      mvpPresenter.getWeather("b9a05b741d04063963bd964e8d79d06c")
@@ -49,13 +53,67 @@ class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 //
 //       var result =  JSON.parseObject(json,JsonRootBean::class.java)
 //
-//        Log.i("MainActivity","result=${result}")
 
-//        val view = LayoutInflater.from(this).inflate(R.layout.generate_img,null,false)
-//        bitmap  =XFileUtil.loadBitmapFromView(view)
-//        iv_img.setImageBitmap(bitmap)
+//        showAnimator()
+//        hideAnimator()
+//
+//        fixedRateTimer("",false,0,3000){
+//            show = !show
+//            runOnUiThread {
+//                if(show){
+//                    mObjectAnimatorShow.start()
+//                }else{
+////                    mObjectAnimatorHide.start()
+//                }
+//            }
+//
+//        }
+
+
 
     }
+    private var show = false
+
+    private lateinit var mObjectAnimatorShow:ObjectAnimator
+    private lateinit var mObjectAnimatorHide:ObjectAnimator
+    private fun showAnimator(){
+//        mObjectAnimatorShow = ObjectAnimator.ofInt(iv_test,"backgroundColor",0xfff10f0f.toInt(),0xff0f94f1.toInt(),0xffeaf804.toInt(),0xfff92a0f.toInt())
+////        mObjectAnimatorShow = ObjectAnimator.ofArgb(iv_test,"backgroundColor",0xfff10f0f,0xff0f94f1,0xffeaf804,0xfff92a0f)
+//        mObjectAnimatorShow.duration = 3000
+//        mObjectAnimatorShow.setEvaluator(ArgbEvaluator())
+    }
+    private fun hideAnimator(){
+//        mObjectAnimatorHide = ObjectAnimator.ofFloat(iv_test,"translationY", 0f,-iv_test.layoutParams.height.toFloat())
+//        mObjectAnimatorHide.duration = 3000
+    }
+    //ValueAnimator 是对值得平滑过渡  ObjectAnimator是对对象属性的平滑过渡
+//    private lateinit var mValueAnimatorShow:ValueAnimator
+//    private lateinit var mValueAnimatorHide:ValueAnimator
+//
+//    private fun showAnimator(){
+//
+//        mValueAnimatorShow = ValueAnimator.ofFloat(-iv_test.layoutParams.height.toFloat(), 0f)
+//        mValueAnimatorShow.duration = 3000
+//        mValueAnimatorShow.setTarget(iv_test)
+//        mValueAnimatorShow.addUpdateListener {
+//            animation ->
+//            iv_test.translationY = animation.animatedValue as Float
+////            iv_test.alpha = animation.animatedValue as Float
+//
+//        }
+//    }
+//    private fun hideAnimator(){
+//        mValueAnimatorHide = ValueAnimator.ofFloat(0f,-iv_test.layoutParams.height.toFloat())
+//        mValueAnimatorHide.duration = 3000
+//        mValueAnimatorHide.setTarget(iv_test)
+//        mValueAnimatorHide.addUpdateListener {
+//            animation ->
+//            iv_test.translationY = animation.animatedValue as Float
+////            iv_test.alpha = animation.animatedValue as Float
+//
+//        }
+//    }
+
     var  bitmap:Bitmap? = null
     private fun   initGenerateImg(){
 
@@ -92,44 +150,44 @@ class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
     }
     override fun initView() {
 
-        adaptiveNotchScreenByView(iv_test)
+//        adaptiveNotchScreenByView(iv_test)
     }
 
 
 
 
 
-    override fun createPresenter() =
-        MvpKtPresenter(object :
-            MainView<List<Result>> {
-            override fun showLoading(msg: String?) {
-
-            }
-
-            override fun getDataFail(msg: String?) {
-
-                Log.i("MainActivity", "getDataFail msg=$msg")
-            }
-
-            override fun showErrorMessage() {
-
-            }
-
-            override fun hideLoading() {
-
-            }
-
-            override fun getDataSuccess(model: List<Result>?) {
-
-                Log.i("MainActivity", "model=${model.toString()}")
-
-                //kotlin 可以直接使用id作为变量使用
-                tv_content.text = model.toString()
-                model?.let {
-                    Log.i("MainActivity", "     it.result[0].province=${it[0].province}")
-                }
-
-            }
-
-        })
+    override fun createPresenter() = MvpKtPresenter(null)
+//        MvpKtPresenter(object :
+//            MainView<List<Result>> {
+//            override fun showLoading(msg: String?) {
+//
+//            }
+//
+//            override fun getDataFail(msg: String?) {
+//
+//                Log.i("MainActivity", "getDataFail msg=$msg")
+//            }
+//
+//            override fun showErrorMessage() {
+//
+//            }
+//
+//            override fun hideLoading() {
+//
+//            }
+//
+//            override fun getDataSuccess(model: List<Result>?) {
+//
+//                Log.i("MainActivity", "model=${model.toString()}")
+//
+//                //kotlin 可以直接使用id作为变量使用
+//                tv_content.text = model.toString()
+//                model?.let {
+//                    Log.i("MainActivity", "     it.result[0].province=${it[0].province}")
+//                }
+//
+//            }
+//
+//        })
 }

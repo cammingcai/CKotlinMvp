@@ -1,26 +1,33 @@
 package com.example.kotlinmvp
 
-import android.Manifest
-import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.graphics.Bitmap
-import android.graphics.Canvas
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
 import android.util.Log
-import android.view.LayoutInflater
-import com.camming.mvp.mvp.MainView
-import com.camming.mvp.utils.*
 import com.example.kotlinmvp.mvp.MvpKtPresenter
-import com.example.kotlinmvp.utils.FileHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
-import kotlin.concurrent.fixedRateTimer
-
 class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
-
+    data class CammingData(var id:String,var name:String,var url:String)
     override fun initLayoutId()  = R.layout.activity_main
 
     override fun initData() {
+
+        btn_hide.setOnClickListener {
+
+            Log.i("MainActivity","rl_bottom.height=${rl_bottom.height}")
+            Log.i("MainActivity","rl_bottom.layoutParams.height=${rl_bottom.layoutParams.height}")
+            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationY", 0f,rl_bottom.height.toFloat())
+            m.duration = 300
+            m.start()
+        }
+        btn_show.setOnClickListener {
+            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationY", rl_bottom.height.toFloat(),0f)
+            m.duration = 300
+            m.start()
+        }
+
 //      mvpPresenter.getWeather("b9a05b741d04063963bd964e8d79d06c")
 
 
@@ -68,10 +75,25 @@ class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 //            }
 //
 //        }
+        var text = changeTextSize("0")
+        var text2 =changeTextSize("1.23")
 
+
+        Log.i("MainActivity","text=${text}")
+        Log.i("MainActivity","text2=${text2.toString()}")
 
 
     }
+
+    fun changeTextSize(value:String,f1:Float =11f,f2:Float = 14f): SpannableString {
+        var spannableString = SpannableString(value)
+        if(value.contains(".")){
+            spannableString.setSpan(RelativeSizeSpan(f1/f2),value.indexOf("."),value.length
+                    , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+        return spannableString
+    }
+
     private var show = false
 
     private lateinit var mObjectAnimatorShow:ObjectAnimator
@@ -114,24 +136,6 @@ class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 //        }
 //    }
 
-    var  bitmap:Bitmap? = null
-    private fun   initGenerateImg(){
-
-        Thread {
-
-            var file = XFileUtil.saveFileFromBitmap(XFileUtil.getExternalPackagePath(this),
-                "${System.currentTimeMillis()} .jpg",bitmap)
-            file?.let {
-                runOnUiThread {
-                    XToast.getInstance(this).success("保存成功")
-                }
-
-                FileHelper.insertImageToGallery(this,it)
-            }
-        }.start()
-
-
-    }
 
     override fun initListener() {
 //        btn_save_img.setOnClickListener {

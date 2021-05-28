@@ -1,26 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <FrameLayout
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:clipChildren="false"
-        android:layout_centerInParent="true"
-        android:background="#aadc71ff">
+        android:layout_gravity="bottom"
+        android:background="@color/c93a2ac"
+        android:layout_height="80dp">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/id_viewpager"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="测试动画"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_hide"
             android:layout_width="match_parent"
-            android:layout_marginLeft="60dp"
-            android:clipChildren="false"
-            android:layout_marginRight="60dp"
-            android:layout_height="220dp"
-            android:layout_gravity="center"/>
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:text="隐藏"
+            />
+        <Button
+            android:id="@+id/btn_show"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:text="显示"
+            />
+    </LinearLayout>
 
-    </FrameLayout>
 
-</RelativeLayout>
+
+</FrameLayout>

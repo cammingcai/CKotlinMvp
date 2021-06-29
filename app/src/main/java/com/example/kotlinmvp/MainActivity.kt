@@ -1,10 +1,12 @@
 package com.example.kotlinmvp
 
+import RSAUtils
 import android.animation.ObjectAnimator
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import android.util.Log
+import com.camming.mvp.utils.ScreenUtils
 import com.example.kotlinmvp.mvp.MvpKtPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,21 +15,31 @@ class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
     override fun initLayoutId()  = R.layout.activity_main
 
     override fun initData() {
+        Log.i("MainActivity","initData=")
 
+        var screenWidth = ScreenUtils.getScreenWidth(this)
         btn_hide.setOnClickListener {
 
             Log.i("MainActivity","rl_bottom.height=${rl_bottom.height}")
-            Log.i("MainActivity","rl_bottom.layoutParams.height=${rl_bottom.layoutParams.height}")
-            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationY", 0f,rl_bottom.height.toFloat())
-            m.duration = 300
+                Log.i("MainActivity","rl_bottom.layoutParams.height=${rl_bottom.layoutParams.height}")
+            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationX", 0f,-screenWidth.toFloat())
+            m.duration = 200
             m.start()
         }
         btn_show.setOnClickListener {
-            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationY", rl_bottom.height.toFloat(),0f)
-            m.duration = 300
+            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationX", -screenWidth.toFloat(),0f)
+            m.duration = 200
             m.start()
         }
 
+        var keyData = "glRA0CzLA2NSnzEscUENHN5MW8Zc+ImJemLpx/fF/8m7bmI1GuSNX0GD82fgQT/gzt1GQeSptYbMcNwmOS/HSIGp/EQOPV9+WIoZ4n3PuBsmPaVs+MyFe7m6txbxqz0OnoC+a7bFlnQSIhJOH3jhbe70LG/qvDqNQNODpf0Y9ikq0jjRpasmGAbsbbhRy42saMuxHg4sZyuxWiu99S4Dz08rvBcik4A0r1++TQyn0a0txIfrSsMaNZdrfKjqB/ny4HBFhCPb1W4bX8HyPABr7k0GVLcoUkQANvRHZXKJy485RJGgiJ4QZ1bl81IndxwcgA82lphxJ6hQRLEvFyJjgQ=="
+
+        val rsa = RSAUtils()
+        rsa.keyPairGenerator()
+
+        var result =  rsa.decryptByPublicKey2(keyData)
+        Log.i("MainActivity","initData result=${result}")
+        Log.e("MainActivity","initData result=${result}")
 //      mvpPresenter.getWeather("b9a05b741d04063963bd964e8d79d06c")
 
 

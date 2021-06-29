@@ -9,6 +9,9 @@
         android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:translationX="-600dp"
         android:background="@color/c93a2ac"
         android:layout_height="80dp">
 

@@ -1,0 +1,52 @@
+代码来源：https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+
+使用示例：
+class QuickAdapter : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_news_info) {
+
+    override fun convert(helper: BaseViewHolder, item: String) {
+        helper.setText(R.id.title, item)
+    }
+}
+
+private val mIdeaRecyclerView by lazy { findViewById<AppRecyclerView>(R.id.idea_recycler_view) }
+
+mIdeaRecyclerView.initSingleTypeRecycleView(LinearLayoutManager(this@TestActivity), QuickAdapter(), false)
+
+mIdeaRecyclerView.refreshController().setOnRefreshListener {
+    mIdeaRecyclerView.postDelayed({
+        mIdeaRecyclerView.refreshController().refreshComplete()
+    }, 3000)
+}
+
+mIdeaRecyclerView.loadMoreController().setOnLoadMoreListener {
+    mIdeaRecyclerView.postDelayed({
+        mIdeaRecyclerView.loadMoreController().loadMoreEnd()
+    }, 3000)
+}
+
+mIdeaRecyclerView.headerController().addHeader(LayoutInflater.from(this@TestActivity).inflate(R.layout.main_head, null))
+mIdeaRecyclerView.footerController().addFooter(LayoutInflater.from(this@TestActivity).inflate(R.layout.main_foot, null))
+
+val data = ArrayList<String>()
+data.add("111111111111")
+data.add("22222222222")
+data.add("333333333333")
+data.add("4444444444")
+data.add("5555555555")
+data.add("66666666666")
+data.add("77777777777")
+data.add("88888888888")
+data.add("9999999999")
+data.add("aaaaaaaaaa")
+data.add("bbbbbbbbbbbbb")
+data.add("ccccccccccccc")
+data.add("ddddddddddddd")
+data.add("eeeeeeeeeeeee")
+data.add("ffffffffffff")
+data.add("ggggggggggggggg")
+data.add("hhhhhhhhhh")
+data.add("iiiiiiiiiiiii")
+data.add("jjjjjjjjjjjjjj")
+data.add("kkkkkkkkkkkkk")
+
+mIdeaRecyclerView.itemController().setNewData(data)

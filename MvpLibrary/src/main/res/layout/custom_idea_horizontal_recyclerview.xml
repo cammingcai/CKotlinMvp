@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.camming.mvp.ui.widget.recyclerview.smartrefresh_horizontal.SmartRefreshHorizontal
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srlEnableHeaderTranslationContent="true"
+    app:srlEnableFooterTranslationContent="true">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+<!--    <com.ui.widget.recyclerview.smartrefresh_horizontal.SimpleTextFooter-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:srlTextPulling="释放查看更多"-->
+<!--        app:srlTextRelease="释放查看更多"-->
+<!--        app:srlEnableLastTime="false"-->
+<!--        app:srlTextSizeTime="12sp"-->
+<!--        android:rotation="90"/>-->
+
+</com.camming.mvp.ui.widget.recyclerview.smartrefresh_horizontal.SmartRefreshHorizontal>

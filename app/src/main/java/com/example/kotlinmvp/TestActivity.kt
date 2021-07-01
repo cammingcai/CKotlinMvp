@@ -1,16 +1,13 @@
 package com.example.kotlinmvp
 
-import RSAUtils
-import android.animation.ObjectAnimator
-import android.content.Intent
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import android.util.Log
-import com.camming.mvp.utils.ScreenUtils
-import com.example.kotlinmvp.MvpExpands.mvpToast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinmvp.event.MessageEvent
 import com.example.kotlinmvp.mvp.MvpKtPresenter
+import com.example.kotlinmvp.ui.adapter.TestAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -21,11 +18,29 @@ class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 //    data class CammingData(var id:String,var name:String,var url:String)
     override fun initLayoutId()  = R.layout.activity_main
 
+
+    private val testDatas = mutableListOf<MessageEvent>()
+//    private val mTestAdapter by lazy { TestAdapter(this,arv_view,testDatas) }
+
     override fun initData() {
         Log.i("MainActivity","initData=")
 
-        var be = supportFragmentManager.beginTransaction()
-        be.replace(R.id.fl_content,EventBusFragment()).commit()
+
+
+        arv_view.layoutManager  = LinearLayoutManager(this)
+//        arv_view.adapter = mTestAdapter
+
+
+        for (num in 0..20){
+            testDatas.add(MessageEvent().apply {
+                this.message = "测试${num}"
+            })
+        }
+
+        var mTestAdapter = TestAdapter(this,arv_view,testDatas)
+        arv_view.adapter = mTestAdapter
+//        var be = supportFragmentManager.beginTransaction()
+//        be.replace(R.id.fl_content,EventBusFragment()).commit()
 
 //        var screenWidth = ScreenUtils.getScreenWidth(this)
 //        btn_hide.setOnClickListener {

@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected List<T> dataLists;
+    protected List<T> dataLists ;
 
     public BaseRecyclerViewAdapter(){
         this(new ArrayList<T>());
@@ -43,7 +43,8 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
      * @param datas
      */
     public void setDataLists(List<T> datas) {
-        dataLists.clear();
+        if(dataLists!=null)
+            dataLists.clear();
         if (datas != null && !datas.isEmpty()) {
             dataLists.addAll(datas);
         }

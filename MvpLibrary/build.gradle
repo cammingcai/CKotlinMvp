@@ -65,5 +65,9 @@ dependencies {
     api 'com.alibaba:fastjson:1.1.57.android'
 
     api 'org.greenrobot:eventbus:3.1.1'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    // 下拉刷新库
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-16'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-2'
 
 }

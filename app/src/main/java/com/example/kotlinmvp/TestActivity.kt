@@ -1,5 +1,6 @@
 package com.example.kotlinmvp
 
+import android.content.Intent
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
@@ -26,6 +27,7 @@ class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
         Log.i("MainActivity","initData=")
 
 
+        startActivity(Intent(this,TestLitepalActivity::class.java))
 
         arv_view.layoutManager  = LinearLayoutManager(this)
 //        arv_view.adapter = mTestAdapter

@@ -2,45 +2,56 @@ package com.example.kotlinmvp
 
 import RSAUtils
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import android.util.Log
 import com.camming.mvp.utils.ScreenUtils
+import com.example.kotlinmvp.MvpExpands.mvpToast
+import com.example.kotlinmvp.event.MessageEvent
 import com.example.kotlinmvp.mvp.MvpKtPresenter
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
-class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
-    data class CammingData(var id:String,var name:String,var url:String)
+class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
+
+    override val activityName: String get() = "TestActivity"
+//    data class CammingData(var id:String,var name:String,var url:String)
     override fun initLayoutId()  = R.layout.activity_main
 
     override fun initData() {
         Log.i("MainActivity","initData=")
 
-        var screenWidth = ScreenUtils.getScreenWidth(this)
-        btn_hide.setOnClickListener {
+        var be = supportFragmentManager.beginTransaction()
+        be.replace(R.id.fl_content,EventBusFragment()).commit()
 
-            Log.i("MainActivity","rl_bottom.height=${rl_bottom.height}")
-                Log.i("MainActivity","rl_bottom.layoutParams.height=${rl_bottom.layoutParams.height}")
-            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationX", 0f,-screenWidth.toFloat())
-            m.duration = 200
-            m.start()
-        }
-        btn_show.setOnClickListener {
-            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationX", -screenWidth.toFloat(),0f)
-            m.duration = 200
-            m.start()
-        }
+//        var screenWidth = ScreenUtils.getScreenWidth(this)
+//        btn_hide.setOnClickListener {
+//
+//            Log.i("MainActivity","rl_bottom.height=${rl_bottom.height}")
+//                Log.i("MainActivity","rl_bottom.layoutParams.height=${rl_bottom.layoutParams.height}")
+//            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationX", 0f,-screenWidth.toFloat())
+//            m.duration = 200
+//            m.start()
+//        }
+//        btn_show.setOnClickListener {
+//            var  m = ObjectAnimator.ofFloat(rl_bottom,"translationX", -screenWidth.toFloat(),0f)
+//            m.duration = 200
+//            m.start()
+//        }
+//
+//        var keyData = "glRA0CzLA2NSnzEscUENHN5MW8Zc+ImJemLpx/fF/8m7bmI1GuSNX0GD82fgQT/gzt1GQeSptYbMcNwmOS/HSIGp/EQOPV9+WIoZ4n3PuBsmPaVs+MyFe7m6txbxqz0OnoC+a7bFlnQSIhJOH3jhbe70LG/qvDqNQNODpf0Y9ikq0jjRpasmGAbsbbhRy42saMuxHg4sZyuxWiu99S4Dz08rvBcik4A0r1++TQyn0a0txIfrSsMaNZdrfKjqB/ny4HBFhCPb1W4bX8HyPABr7k0GVLcoUkQANvRHZXKJy485RJGgiJ4QZ1bl81IndxwcgA82lphxJ6hQRLEvFyJjgQ=="
+//
+//        val rsa = RSAUtils()
+//        rsa.keyPairGenerator()
+//
+//        var result =  rsa.decryptByPublicKey2(keyData)
+//        Log.i("MainActivity","initData result=${result}")
+//        Log.e("MainActivity","initData result=${result}")
 
-        var keyData = "glRA0CzLA2NSnzEscUENHN5MW8Zc+ImJemLpx/fF/8m7bmI1GuSNX0GD82fgQT/gzt1GQeSptYbMcNwmOS/HSIGp/EQOPV9+WIoZ4n3PuBsmPaVs+MyFe7m6txbxqz0OnoC+a7bFlnQSIhJOH3jhbe70LG/qvDqNQNODpf0Y9ikq0jjRpasmGAbsbbhRy42saMuxHg4sZyuxWiu99S4Dz08rvBcik4A0r1++TQyn0a0txIfrSsMaNZdrfKjqB/ny4HBFhCPb1W4bX8HyPABr7k0GVLcoUkQANvRHZXKJy485RJGgiJ4QZ1bl81IndxwcgA82lphxJ6hQRLEvFyJjgQ=="
 
-        val rsa = RSAUtils()
-        rsa.keyPairGenerator()
-
-        var result =  rsa.decryptByPublicKey2(keyData)
-        Log.i("MainActivity","initData result=${result}")
-        Log.e("MainActivity","initData result=${result}")
-//      mvpPresenter.getWeather("b9a05b741d04063963bd964e8d79d06c")
 
 
         //Retrofit +OKHTTP+Rxjava请求
@@ -87,14 +98,15 @@ class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 //            }
 //
 //        }
-        var text = changeTextSize("0")
-        var text2 =changeTextSize("1.23")
 
 
-        Log.i("MainActivity","text=${text}")
-        Log.i("MainActivity","text2=${text2.toString()}")
 
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventMessage(event:MessageEvent){
+
+        Log.i(activityName,"${activityName}${event.message}")
     }
 
     fun changeTextSize(value:String,f1:Float =11f,f2:Float = 14f): SpannableString {
@@ -106,10 +118,10 @@ class MainActivity : XKotlinBaseActivit<MvpKtPresenter>() {
         return spannableString
     }
 
-    private var show = false
-
-    private lateinit var mObjectAnimatorShow:ObjectAnimator
-    private lateinit var mObjectAnimatorHide:ObjectAnimator
+//    private var show = false
+//
+//    private lateinit var mObjectAnimatorShow:ObjectAnimator
+//    private lateinit var mObjectAnimatorHide:ObjectAnimator
     private fun showAnimator(){
 //        mObjectAnimatorShow = ObjectAnimator.ofInt(iv_test,"backgroundColor",0xfff10f0f.toInt(),0xff0f94f1.toInt(),0xffeaf804.toInt(),0xfff92a0f.toInt())
 ////        mObjectAnimatorShow = ObjectAnimator.ofArgb(iv_test,"backgroundColor",0xfff10f0f,0xff0f94f1,0xffeaf804,0xfff92a0f)

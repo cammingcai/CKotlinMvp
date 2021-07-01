@@ -19,7 +19,7 @@ import butterknife.Unbinder;
  */
 
 public abstract class XActivity extends AppCompatActivity {
-    private Unbinder unbinder;
+//    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public abstract class XActivity extends AppCompatActivity {
         ActivityUtils.getInstance().addActivity(this);
         if(initLayoutId()>0){
             setContentView(initLayoutId());
-            unbinder = ButterKnife.bind(this);
+//            unbinder = ButterKnife.bind(this);
         }
         initView();
         initData();
@@ -61,9 +61,9 @@ public abstract class XActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(unbinder!=null){
-            unbinder.unbind();
-        }
+//        if(unbinder!=null){
+//            unbinder.unbind();
+//        }
         ActivityUtils.getInstance().finishActivity();
     }
 }

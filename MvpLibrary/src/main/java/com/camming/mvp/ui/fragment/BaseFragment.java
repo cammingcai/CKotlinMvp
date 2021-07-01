@@ -28,7 +28,7 @@ import io.reactivex.observers.DisposableObserver;
 
 public abstract class BaseFragment extends Fragment {
 
-    private Unbinder unbinder;
+//    private Unbinder unbinder;
 
     @Nullable
     @Override
@@ -36,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
         View view =null ;
         if(getFragmentLayout()>0){
             view  = inflater.inflate(getFragmentLayout(), null);
-            unbinder = ButterKnife.bind(this,view);
+//            unbinder = ButterKnife.bind(this,view);
 
             initView(view);
             //unbinder = ButterKnife.bind(view);//这个方法在fragment 无效
@@ -66,8 +66,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(unbinder!=null)
-            unbinder.unbind();
+//        if(unbinder!=null)
+//            unbinder.unbind();
         onUnsubscribe();
     }
 

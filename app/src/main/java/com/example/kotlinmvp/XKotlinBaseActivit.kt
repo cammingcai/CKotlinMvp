@@ -12,24 +12,31 @@ import com.camming.mvp.ui.BaseActivity
 import com.camming.mvp.utils.NotchScreenUtil
 import com.camming.mvp.utils.ScreenUtils
 import com.camming.mvp.utils.StatusBarUtil
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 
 /**
  * Create by Cabbage Camming 2021/4/6.
  */
 abstract class XKotlinBaseActivit<P : BasePresenter<*>>: BaseActivity() {
-    //    private CompositeDisposable mCompositeDisposable;
-    //    private List<Call> calls;
+
+    abstract val activityName: String
     protected var mIsDarkMode = true
     protected var mvpPresenter: P? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
+    @Subscribe
+    public override  fun onCreate(savedInstanceState: Bundle?) {
         mvpPresenter = createPresenter()
         super.onCreate(savedInstanceState)
         StatusBarUtil.immersive(this)
 //        StatusBarUtil.justMDarkMode(this, mIsDarkMode)
-
+        EventBus.getDefault().register(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
     override fun getResources(): Resources {
         // 字体大小不跟随系统
         val res = super.getResources()
@@ -110,6 +117,7 @@ abstract class XKotlinBaseActivit<P : BasePresenter<*>>: BaseActivity() {
         super.onDestroy()
         mvpPresenter?.detachView()
 
+        EventBus.getDefault().unregister(this)
 
     }
 

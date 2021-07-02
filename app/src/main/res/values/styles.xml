@@ -29,6 +29,7 @@
 
 
 
+    <!--宽满屏-->
     <style name="LoadingDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -39,7 +40,17 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="LoadingDialogTranslucent" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <!--显示区域以外是否使用黑色半透明背景-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowSoftInputMode">stateHidden|adjustResize</item>
+        <item name="android:windowFullscreen">true</item>
 
+    </style>
 
     <style name="HRRobotCheckBox">
         <item name="android:layout_width">match_parent</item>

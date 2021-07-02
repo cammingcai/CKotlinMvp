@@ -1,4 +1,5 @@
 include ':MvpLibrary'
 include ':holle'
 include ':app'
+include ':library:FlycoTabLayout_Lib',':library:xupdate'
 rootProject.name = "KotlinMvp"

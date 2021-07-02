@@ -46,5 +46,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation project(':MvpLibrary')
-
+    implementation project(':library:FlycoTabLayout_Lib')
+    implementation project(':library:xupdate')
 }

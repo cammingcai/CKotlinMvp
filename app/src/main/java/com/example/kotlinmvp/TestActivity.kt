@@ -58,7 +58,7 @@ class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 
 
         var be = supportFragmentManager.beginTransaction()
-        be.replace(R.id.fl_content,EventBusFragment()).commit()
+        be.replace(R.id.fl_content,NewsFragment()).commit()
 
 //        var screenWidth = ScreenUtils.getScreenWidth(this)
 //        btn_hide.setOnClickListener {

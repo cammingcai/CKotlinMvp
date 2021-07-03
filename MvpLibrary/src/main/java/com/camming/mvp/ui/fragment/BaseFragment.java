@@ -1,6 +1,7 @@
 package com.camming.mvp.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,17 +29,28 @@ import io.reactivex.observers.DisposableObserver;
 
 public abstract class BaseFragment extends Fragment {
 
-//    private Unbinder unbinder;
+    /**
+     * 是否初始化过布局
+     */
+    protected boolean isViewInitiated;
+    /**
+     * 当前界面是否可见
+     */
+    protected boolean isVisibleToUser;
+    /**
+     * 是否加载过数据
+     */
+    protected boolean isDataInitiated;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =null ;
-        if(getFragmentLayout()>0){
-            view  = inflater.inflate(getFragmentLayout(), null);
+        if(getFragmentLayoutId()>0){
+            view  = inflater.inflate(getFragmentLayoutId(), null);
 //            unbinder = ButterKnife.bind(this,view);
 
-            initView(view);
+
             //unbinder = ButterKnife.bind(view);//这个方法在fragment 无效
         }else {
             return super.onCreateView(inflater, container, savedInstanceState);
@@ -56,22 +68,62 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
+        initView();
+        if(isLazyLoad()){
+            isViewInitiated = true;
+            prepareFetchData();
+        }else{
+            initData();
+        }
+
+    }
+    /**
+     * 启用懒加载，就是仅仅在fragment第一次可见的时候加载数据
+     */
+    protected Boolean isLazyLoad(){
+        return false;
     }
 
-    public abstract int getFragmentLayout();
-    public abstract void initView(View view);
+    public abstract int getFragmentLayoutId();
+    public abstract void initView();
+
+    /**
+     * 懒加载
+     */
     public abstract void initData();
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        if(unbinder!=null)
-//            unbinder.unbind();
+
         onUnsubscribe();
     }
 
 
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.i("BaseFragment","setVisibleToUser isVisibleToUser="+isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser&&isLazyLoad()) {
+            prepareFetchData();
+        }
+    }
+
+
+    /**
+     * 判断懒加载条件
+
+     */
+    public void prepareFetchData() {
+        Log.i("BaseFragment","prepareFetchData isVisibleToUser="+isVisibleToUser+"--isViewInitiated="+isViewInitiated+"---isDataInitiated="+isDataInitiated);
+
+        if (isVisibleToUser && isViewInitiated && (!isDataInitiated)) {
+            initData();
+            isDataInitiated = true;
+        }
+    }
     private CompositeDisposable mCompositeDisposable;
 
     public void onUnsubscribe() {

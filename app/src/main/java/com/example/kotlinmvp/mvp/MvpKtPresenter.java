@@ -36,9 +36,9 @@ public class MvpKtPresenter extends BasePresenter<MvpViewCallback> {
         mMvpModel.getRetrofitMvpApi().queryPhone("374feaa91ac57e84e159505d0e78ed05",phone).enqueue(callback);
     }
 
-    public void queryNews(String page,String size,MyRetrofitCallback callback){
+    public void queryNews(String type,String page,String size,MyRetrofitCallback callback){
 
-        mMvpModel.getRetrofitMvpApi().queryNews("2fe35f86e4320abe2d55612f2dbf67ee","tiyu",page,size).enqueue(callback);
+        mMvpModel.getRetrofitMvpApi().queryNews("2fe35f86e4320abe2d55612f2dbf67ee",type,page,size).enqueue(callback);
     }
     public void getWether(String key){
 

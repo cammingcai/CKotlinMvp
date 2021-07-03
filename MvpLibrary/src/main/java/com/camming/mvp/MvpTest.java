@@ -3,13 +3,13 @@ package com.camming.mvp;
 
 import com.camming.mvp.mvp.MainModel;
 import com.camming.mvp.mvp.MainPresenter;
-import com.camming.mvp.mvp.MainView;
+import com.camming.mvp.mvp.MvpViewCallback;
 
 /**
  * Created by camming on 2019\3\4 0004.
  * code is data  data is code
  */
-public class MvpTest extends Mvp<MainPresenter> implements MainView<MainModel> {
+public class MvpTest extends Mvp<MainPresenter> implements MvpViewCallback<MainModel> {
 
     public void  startData(){
         mvpPresenter = createPresenter();

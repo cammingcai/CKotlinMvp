@@ -16,19 +16,16 @@ public interface BaseMvp {
      * MVP View负责展示数据
      * */
     interface BaseMvpView {
-        /**
-         * 显示加载进度框
-         */
-        void showLoading(String msg);
-        /**
-         * 隐藏加载进度框
-         */
-        void hideLoading();
-
 //        /**
-//         * 显示吐司
-//         **/
-//        void showTips(String msg);
+//         * 显示加载进度框
+//         */
+//        void showLoading(String msg);
+//        /**
+//         * 隐藏加载进度框
+//         */
+//        void hideLoading();
+
+
 
     }
 

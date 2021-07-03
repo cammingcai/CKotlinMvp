@@ -1,4 +1,4 @@
-package com.example.kotlinmvp;
+package com.example.kotlinmvp.model;
 
 import com.alibaba.fastjson.JSON;
 import com.camming.mvp.http.XHttp;
@@ -11,9 +11,7 @@ public class JsonResult<T> {
     private String reason;
     private T result;
     private int error_code;
-//    public <T> T get(Class<T> clazz) {
-//        return JSON.parseObject(result,XHttp.analysisClassInfo(clazz));
-//    }
+
 
     public String getReason() {
         return reason;

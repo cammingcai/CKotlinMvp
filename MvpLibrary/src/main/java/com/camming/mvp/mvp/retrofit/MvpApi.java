@@ -37,18 +37,10 @@ import retrofit2.http.Url;
  */
 public interface MvpApi {
     //baseUrl
-   // String API_SERVER_URL = "http://127.0.0.1:8080/";
-//    String API_SERVER_URL = "http://192.168.11.237:8181/";
-//    String API_SERVER_URL = "http://192.168.11.14/";//https://download.tfwangs.com/apk/DoraAI_1.0.30.apk
-//    String API_SERVER_URL = "http://is.snssdk.com/";
-//    String API_SERVER_URL = "https://download.tfwangs.com/";
-    String API_SERVER_URL = "http://v.juhe.cn/";
-//    String API_SERVER_URL =  "http://www.kuaidi100.com/";
 
-//    //加载天气
-//    @Headers("apikey:81bf9da930c7f9825a3c3383f1d8d766")
-//    @GET("adat/sk/{cityId}.html")
-//    Call<MainModel> loadDataByRetrofit(@Path("cityId") String cityId);
+//    String API_SERVER_URL = "http://apis.juhe.cn/";
+    String API_SERVER_URL = "http://v.juhe.cn/";
+
 
 //    query?type=shunfeng&postid=12312312312
     @GET("query")

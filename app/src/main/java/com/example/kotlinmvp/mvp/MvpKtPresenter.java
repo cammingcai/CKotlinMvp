@@ -2,19 +2,44 @@ package com.example.kotlinmvp.mvp;
 
 
 import com.camming.mvp.mvp.BasePresenter;
-import com.camming.mvp.mvp.MainView;
+import com.camming.mvp.mvp.MvpViewCallback;
 import com.example.kotlinmvp.Result;
+import com.example.kotlinmvp.model.PhoneData;
 
 import java.util.List;
 
-public class MvpKtPresenter extends BasePresenter<MainView> {
+public class MvpKtPresenter extends BasePresenter<MvpViewCallback> {
 
-    private MvpModel model;
-    public MvpKtPresenter(MainView view) {
+    private MvpModel mMvpModel;
+    public MvpKtPresenter(MvpViewCallback view) {
         attachView(view);
-        model = new MvpModel();
+        mMvpModel = new MvpModel();
     }
 
+
+    public void queryPhoneArea(String phone){
+
+        mMvpModel.getRetrofitMvpApi().queryPhone("374feaa91ac57e84e159505d0e78ed05",phone).enqueue(new MyRetrofitCallback<PhoneData>() {
+            @Override
+            public void onSuccess(PhoneData model) {
+                mvpView.getDataSuccess(model);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mvpView.getDataFail(msg);
+            }
+        });
+    }
+    public void queryPhoneArea(String phone,MyRetrofitCallback callback){
+
+        mMvpModel.getRetrofitMvpApi().queryPhone("374feaa91ac57e84e159505d0e78ed05",phone).enqueue(callback);
+    }
+
+    public void queryNews(String page,String size,MyRetrofitCallback callback){
+
+        mMvpModel.getRetrofitMvpApi().queryNews("2fe35f86e4320abe2d55612f2dbf67ee","tiyu",page,size).enqueue(callback);
+    }
     public void getWether(String key){
 
 //        model.getRetrofitMvpApi().loadWetherByRetrofit(key).enqueue(new Callback<List<Result>>() {
@@ -31,7 +56,7 @@ public class MvpKtPresenter extends BasePresenter<MainView> {
 
         //retrofit + okhttp
 
-        model.getRetrofitMvpApi().loadWetherByRetrofit(key).enqueue(new MyRetrofitCallback<List<Result>>() {
+        mMvpModel.getRetrofitMvpApi().loadWetherByRetrofit(key).enqueue(new MyRetrofitCallback<List<Result>>() {
             @Override
             public void onSuccess(List<Result> model) {
                 mvpView.getDataSuccess(model);

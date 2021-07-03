@@ -74,7 +74,7 @@
                         // 此apk包的更新内容
                         update.setUpdateContent(object.optString("update_content").replace("#","\n"));
                         // 此apk包是否为强制更新
-                        update.setForced(object.optBoolean("is_must_update",false));
+                        update.setForced(object.optBoolean("is_must_update",false)); 
                         // 是否显示忽略此次版本更新按钮
                         update.setIgnore(object.optBoolean("ignore_able",false));
                         update.setMd5(object.optString("md5"));

@@ -1,7 +1,7 @@
 package com.example.kotlinmvp
 
 import com.camming.mvp.model.Area
-import com.example.kotlinmvp.MvpExpands.mvpToast
+import com.example.kotlinmvp.MvpExpands.showToast
 import com.example.kotlinmvp.mvp.MvpKtPresenter
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_litepal.*
@@ -33,9 +33,9 @@ class TestLitepalActivity : XKotlinBaseActivit<MvpKtPresenter>() {
             area.name = "福田"
             area.save() //保存
             if (area.save()) {
-                mvpToast("添加数据成功")
+                showToast("添加数据成功")
             } else {
-                mvpToast("添加数据失败")
+                showToast("添加数据失败")
             }
         }
 
@@ -44,7 +44,7 @@ class TestLitepalActivity : XKotlinBaseActivit<MvpKtPresenter>() {
             area.name = "宝安"
             area.update(1) //修改指定ID的数据
 
-            mvpToast("修改数据成功")
+            showToast("修改数据成功")
         }
 
         btn_query.setOnClickListener { v ->  //查询数据
@@ -60,7 +60,7 @@ class TestLitepalActivity : XKotlinBaseActivit<MvpKtPresenter>() {
             delete(Area::class.java, 1) //删除指定id
 
             //LitePal.deleteAll(Area.class, "name = ?" , "福田");//删除所有name为福田的
-            mvpToast("删除数据成功")
+            showToast("删除数据成功")
         }
 
 

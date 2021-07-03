@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.CustomAppTheme"
-        tools:replace="android:allowBackup,android:supportsRtl,android:label,android:icon,android:theme,android:networkSecurityConfig"
         android:usesCleartextTraffic="true">
         <activity android:name=".EventBusTestActivity"/>
         <activity android:name=".TestLitepalActivity"/>

@@ -25,9 +25,9 @@ package com.camming.mvp.mvp;
  * 类为纯Java类，不包含任何Android API，
  * 负责请求数据，并对数据请求的反馈进行处理。
  */
-public class MainPresenter extends BasePresenter<MainView> {
+public class MainPresenter extends BasePresenter<MvpViewCallback> {
     private MainModel model;
-    public MainPresenter(MainView view) {
+    public MainPresenter(MvpViewCallback view) {
         attachView(view);
         model = new MainModel();
     }

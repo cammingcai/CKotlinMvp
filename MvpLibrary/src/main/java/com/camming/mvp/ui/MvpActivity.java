@@ -3,7 +3,6 @@ package com.camming.mvp.ui;
 import android.os.Bundle;
 
 import com.camming.mvp.mvp.BasePresenter;
-import com.camming.mvp.mvp.MainView;
 import com.camming.mvp.utils.ProgressDialog;
 import com.camming.mvp.utils.ToastUtils;
 

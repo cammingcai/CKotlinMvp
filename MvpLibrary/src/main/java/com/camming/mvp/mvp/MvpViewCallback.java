@@ -6,7 +6,7 @@ package com.camming.mvp.mvp;
  * 的作用是根据具体业务的需要，
  * 为Presenter提供调用Activity中具体UI逻辑操作的方法。
  */
-public interface MainView<T> extends BaseView {
+public interface MvpViewCallback<T> extends BaseView {
     /**
      * 当数据请求成功后，调用此接口显示数据
      * @param model 数据源

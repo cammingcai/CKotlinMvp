@@ -1,14 +1,17 @@
 package com.example.kotlinmvp
 
-import android.content.Intent
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.RelativeSizeSpan
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.camming.mvp.mvp.MvpViewCallback
+import com.camming.mvp.utils.XRegexUtils
+import com.example.kotlinmvp.MvpExpands.hideLoading
+import com.example.kotlinmvp.MvpExpands.showLoading
+
+import com.example.kotlinmvp.MvpExpands.showToast
 import com.example.kotlinmvp.event.MessageEvent
+import com.example.kotlinmvp.model.PhoneData
+import com.example.kotlinmvp.model.news.NewsBean
 import com.example.kotlinmvp.mvp.MvpKtPresenter
-import com.example.kotlinmvp.ui.adapter.TestAdapter
+import com.example.kotlinmvp.mvp.MyRetrofitCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -25,24 +28,37 @@ class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 
     override fun initData() {
         Log.i("MainActivity","initData=")
+        et_phone.setText("13560048370")
+        btn_query.setOnClickListener {
+            var phone = et_phone.text.toString()
+//            if(XRegexUtils.checkPhone(phone)){
+
+                    showLoading("查询中")
+//                mvpPresenter?.queryPhoneArea(phone,object : MyRetrofitCallback<PhoneData>() {
+//                    override fun onSuccess(model: PhoneData) {
+//                        tv_content.text = "查询成功${model.province}${model.city}--${model.company}--城市代码：${model.areacode}"
+//                        hideLoading()
+//                    }
+//
+//                    override fun onFailure(msg: String) {
+//                        tv_content.text ="查询失败=${msg}"
+//                        hideLoading()
+//                    }
+//                })
 
 
-        startActivity(Intent(this,TestLitepalActivity::class.java))
+//            }else{
+//                showToast("手机号码格式有误")
+//            }
 
-        arv_view.layoutManager  = LinearLayoutManager(this)
-//        arv_view.adapter = mTestAdapter
-
-
-        for (num in 0..20){
-            testDatas.add(MessageEvent().apply {
-                this.message = "测试${num}"
-            })
         }
 
-        var mTestAdapter = TestAdapter(this,arv_view,testDatas)
-        arv_view.adapter = mTestAdapter
-//        var be = supportFragmentManager.beginTransaction()
-//        be.replace(R.id.fl_content,EventBusFragment()).commit()
+
+//        startActivity(Intent(this,TestLitepalActivity::class.java))
+
+
+        var be = supportFragmentManager.beginTransaction()
+        be.replace(R.id.fl_content,EventBusFragment()).commit()
 
 //        var screenWidth = ScreenUtils.getScreenWidth(this)
 //        btn_hide.setOnClickListener {
@@ -99,10 +115,7 @@ class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 //        var json  = "{\"reason\":\"查询成功\",\"result\":[{\"id\":\"1\",\"province\":\"安徽\"},{\"id\":\"2\",\"province\":\"澳门\"},{\"id\":\"3\",\"province\":\"北京\"},{\"id\":\"4\",\"province\":\"福建\"},{\"id\":\"5\",\"province\":\"甘肃\"},{\"id\":\"6\",\"province\":\"广东\"},{\"id\":\"7\",\"province\":\"广西\"},{\"id\":\"8\",\"province\":\"贵州\"},{\"id\":\"9\",\"province\":\"海南\"},{\"id\":\"10\",\"province\":\"河北\"},{\"id\":\"11\",\"province\":\"河南\"},{\"id\":\"12\",\"province\":\"黑龙江\"},{\"id\":\"13\",\"province\":\"湖北\"},{\"id\":\"14\",\"province\":\"湖南\"},{\"id\":\"15\",\"province\":\"吉林\"},{\"id\":\"16\",\"province\":\"江苏\"},{\"id\":\"17\",\"province\":\"江西\"},{\"id\":\"18\",\"province\":\"辽宁\"},{\"id\":\"19\",\"province\":\"内蒙古\"},{\"id\":\"20\",\"province\":\"宁夏\"},{\"id\":\"21\",\"province\":\"青海\"},{\"id\":\"22\",\"province\":\"山东\"},{\"id\":\"23\",\"province\":\"山西\"},{\"id\":\"24\",\"province\":\"陕西\"},{\"id\":\"25\",\"province\":\"上海\"},{\"id\":\"26\",\"province\":\"四川\"},{\"id\":\"27\",\"province\":\"台湾\"},{\"id\":\"28\",\"province\":\"天津\"},{\"id\":\"29\",\"province\":\"西藏\"},{\"id\":\"30\",\"province\":\"香港\"},{\"id\":\"31\",\"province\":\"新疆\"},{\"id\":\"32\",\"province\":\"云南\"},{\"id\":\"33\",\"province\":\"浙江\"},{\"id\":\"34\",\"province\":\"重庆\"}],\"error_code\":0}"
 //
 //       var result =  JSON.parseObject(json,JsonRootBean::class.java)
-//
 
-//        showAnimator()
-//        hideAnimator()
 //
 //        fixedRateTimer("",false,0,3000){
 //            show = !show
@@ -126,14 +139,6 @@ class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
         Log.i(activityName,"${activityName}${event.message}")
     }
 
-    fun changeTextSize(value:String,f1:Float =11f,f2:Float = 14f): SpannableString {
-        var spannableString = SpannableString(value)
-        if(value.contains(".")){
-            spannableString.setSpan(RelativeSizeSpan(f1/f2),value.indexOf("."),value.length
-                    , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        }
-        return spannableString
-    }
 
 //    private var show = false
 //
@@ -202,37 +207,24 @@ class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
 
 
 
-    override fun createPresenter() = MvpKtPresenter(null)
-//        MvpKtPresenter(object :
-//            MainView<List<Result>> {
-//            override fun showLoading(msg: String?) {
-//
-//            }
-//
-//            override fun getDataFail(msg: String?) {
-//
-//                Log.i("MainActivity", "getDataFail msg=$msg")
-//            }
-//
-//            override fun showErrorMessage() {
-//
-//            }
-//
-//            override fun hideLoading() {
-//
-//            }
-//
-//            override fun getDataSuccess(model: List<Result>?) {
-//
-//                Log.i("MainActivity", "model=${model.toString()}")
-//
-//                //kotlin 可以直接使用id作为变量使用
-//                tv_content.text = model.toString()
-//                model?.let {
-//                    Log.i("MainActivity", "     it.result[0].province=${it[0].province}")
-//                }
-//
-//            }
-//
-//        })
+    override fun createPresenter() =
+        MvpKtPresenter(object :
+            MvpViewCallback<PhoneData> {
+
+            override fun getDataFail(msg: String?) {
+
+                Log.i("MainActivity", "getDataFail msg=$msg")
+            }
+
+            override fun showErrorMessage() {
+
+            }
+
+            override fun getDataSuccess(model: PhoneData) {
+
+                tv_content.text = "${model.province}${model.city}--${model.company}--城市代码：${model.areacode}"
+
+            }
+
+        })
 }

@@ -7,9 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.kotlinmvp.MvpExpands.mvpToast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlinmvp.MvpExpands.hideLoading
+import com.example.kotlinmvp.MvpExpands.showLoading
+import com.example.kotlinmvp.MvpExpands.showToast
+
 import com.example.kotlinmvp.event.MessageEvent
+import com.example.kotlinmvp.model.news.NewsBean
 import com.example.kotlinmvp.mvp.MvpKtPresenter
+import com.example.kotlinmvp.mvp.MyRetrofitCallback
+import com.example.kotlinmvp.ui.adapter.NewsAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_event_bus.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -25,6 +33,8 @@ class EventBusFragment :XKotlinBaseFragment<MvpKtPresenter>() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private val  mNewAdapter by lazy { NewsAdapter(activity!!) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,6 +43,7 @@ class EventBusFragment :XKotlinBaseFragment<MvpKtPresenter>() {
         }
     }
 
+    override fun createPresenter() =  MvpKtPresenter(null)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,14 +60,62 @@ class EventBusFragment :XKotlinBaseFragment<MvpKtPresenter>() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventMessage(event: MessageEvent){
         Log.i(fragmentName,"${fragmentName}${event.message}")
-        mvpToast("${fragmentName}${event.message}\"")
+        showToast("${fragmentName}${event.message}\"")
     }
+
+    private var mPage =1
+    private var mPageSize =10
     override fun initData() {
 
-        btn_event.setOnClickListener {
-            startActivity(Intent(activity,EventBusTestActivity::class.java))
+//        btn_event.setOnClickListener {
+//            startActivity(Intent(activity,EventBusTestActivity::class.java))
+//        }
+
+        var manager  = LinearLayoutManager(activity)
+        rv_news.initSingleTypeRecycleView(manager,mNewAdapter,true)
+
+        rv_news.refreshController().setEnableLoadMore(false)
+        rv_news.refreshController().setEnablePullToRefresh(true)
+
+        rv_news.refreshController().setOnRefreshListener {
+
+            queryNewsData(1)
+        }
+        rv_news.loadMoreController().setOnLoadMoreListener {
+
+            mPage++
+            queryNewsData(mPage)
         }
 
+        queryNewsData(mPage)
+
+        mNewAdapter.setOnItemClickListener { adapter, view, position ->
+
+
+        }
+
+    }
+
+    private fun queryNewsData( page:Int){
+        showLoading("查询中")
+        mvpPresenter?.queryNews(page.toString(),mPageSize.toString(),object : MyRetrofitCallback<NewsBean>() {
+            override fun onSuccess(model: NewsBean) {
+                rv_news.refreshController().refreshComplete()
+                rv_news.loadMoreController().loadMoreComplete()
+                hideLoading()
+                if(page==1){
+                    mNewAdapter.setNewData(model.data)
+
+                }else{
+                    mNewAdapter.addData(model.data)
+                }
+            }
+
+            override fun onFailure(msg: String?) {
+                rv_news.refreshController().refreshComplete()
+                rv_news.loadMoreController().loadMoreComplete()
+            }
+        })
     }
 
 

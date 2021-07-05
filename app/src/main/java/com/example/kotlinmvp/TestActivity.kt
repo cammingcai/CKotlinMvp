@@ -2,21 +2,16 @@ package com.example.kotlinmvp
 
 import android.util.Log
 import com.camming.mvp.mvp.MvpViewCallback
-import com.camming.mvp.utils.XRegexUtils
-import com.example.kotlinmvp.MvpExpands.hideLoading
 import com.example.kotlinmvp.MvpExpands.showLoading
 
-import com.example.kotlinmvp.MvpExpands.showToast
 import com.example.kotlinmvp.event.MessageEvent
 import com.example.kotlinmvp.model.PhoneData
-import com.example.kotlinmvp.model.news.NewsBean
 import com.example.kotlinmvp.mvp.MvpKtPresenter
-import com.example.kotlinmvp.mvp.MyRetrofitCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class TestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
+class TestActivity : XBaseActivit<MvpKtPresenter>() {
 
     override val activityName: String get() = "TestActivity"
 //    data class CammingData(var id:String,var name:String,var url:String)

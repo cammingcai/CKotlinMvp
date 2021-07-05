@@ -11,7 +11,7 @@ import com.camming.mvp.ui.fragment.BaseFragment
 import org.greenrobot.eventbus.EventBus
 
 
-abstract class XKotlinBaseFragment<P : BasePresenter<*>> : BaseFragment() {
+abstract class XBaseFragment<P : BasePresenter<*>> : BaseFragment() {
 
     abstract val fragmentName: String
 

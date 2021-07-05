@@ -9,7 +9,7 @@ import org.litepal.LitePal.delete
 import org.litepal.LitePal.findAll
 
 
-class TestLitepalActivity : XKotlinBaseActivit<MvpKtPresenter>() {
+class TestLitepalActivity : XBaseActivit<MvpKtPresenter>() {
 
     override val activityName: String get() = "TestLitepalActivity"
 

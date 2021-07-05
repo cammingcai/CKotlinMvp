@@ -3,8 +3,6 @@ package com.example.kotlinmvp
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlinmvp.MvpExpands.hideLoading
-import com.example.kotlinmvp.MvpExpands.showLoading
 import com.example.kotlinmvp.MvpExpands.showToast
 import com.example.kotlinmvp.event.MessageEvent
 import com.example.kotlinmvp.model.news.NewsBean
@@ -19,7 +17,7 @@ import org.greenrobot.eventbus.ThreadMode
 private const val ARG_PARAM1 = "param1"
 
 
-class EventBusFragment :XKotlinBaseFragment<MvpKtPresenter>() {
+class EventBusFragment :XBaseFragment<MvpKtPresenter>() {
     override val fragmentName: String get() = "EventBusFragment"
     private var mType: String = "top"
 

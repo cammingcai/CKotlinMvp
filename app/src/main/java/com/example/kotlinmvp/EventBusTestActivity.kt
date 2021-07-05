@@ -1,6 +1,5 @@
 package com.example.kotlinmvp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kotlinmvp.event.MessageEvent
 import com.example.kotlinmvp.mvp.MvpKtPresenter
@@ -9,7 +8,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class EventBusTestActivity : XKotlinBaseActivit<MvpKtPresenter>() {
+class EventBusTestActivity : XBaseActivit<MvpKtPresenter>() {
 
     override val activityName: String get() = "EventBusTestActivity"
     override fun onCreate(savedInstanceState: Bundle?) {

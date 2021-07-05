@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe
 /**
  * Create by Cabbage Camming 2021/4/6.
  */
-abstract class XKotlinBaseActivit<P : BasePresenter<*>>: BaseActivity() {
+abstract class XBaseActivit<P : BasePresenter<*>>: BaseActivity() {
 
     abstract val activityName: String
     protected var mIsDarkMode = true

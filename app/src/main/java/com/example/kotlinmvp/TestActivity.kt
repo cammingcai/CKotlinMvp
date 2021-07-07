@@ -2,11 +2,15 @@ package com.example.kotlinmvp
 
 import android.util.Log
 import com.camming.mvp.mvp.MvpViewCallback
+import com.camming.mvp.utils.XRegexUtils
+import com.example.kotlinmvp.MvpExpands.hideLoading
 import com.example.kotlinmvp.MvpExpands.showLoading
+import com.example.kotlinmvp.MvpExpands.showToast
 
 import com.example.kotlinmvp.event.MessageEvent
 import com.example.kotlinmvp.model.PhoneData
 import com.example.kotlinmvp.mvp.MvpKtPresenter
+import com.example.kotlinmvp.mvp.MyRetrofitCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -26,25 +30,25 @@ class TestActivity : XBaseActivit<MvpKtPresenter>() {
         et_phone.setText("13560048370")
         btn_query.setOnClickListener {
             var phone = et_phone.text.toString()
-//            if(XRegexUtils.checkPhone(phone)){
+            if(XRegexUtils.checkPhone(phone)){
 
                     showLoading("查询中")
-//                mvpPresenter?.queryPhoneArea(phone,object : MyRetrofitCallback<PhoneData>() {
-//                    override fun onSuccess(model: PhoneData) {
-//                        tv_content.text = "查询成功${model.province}${model.city}--${model.company}--城市代码：${model.areacode}"
-//                        hideLoading()
-//                    }
-//
-//                    override fun onFailure(msg: String) {
-//                        tv_content.text ="查询失败=${msg}"
-//                        hideLoading()
-//                    }
-//                })
+                mvpPresenter?.queryPhoneArea(phone,object : MyRetrofitCallback<PhoneData>() {
+                    override fun onSuccess(model: PhoneData) {
+                        tv_content.text = "查询成功=${model.toString()}"
+                        hideLoading()
+                    }
+
+                    override fun onFailure(msg: String) {
+                        tv_content.text ="查询失败=${msg}"
+                        hideLoading()
+                    }
+                })
 
 
-//            }else{
-//                showToast("手机号码格式有误")
-//            }
+            }else{
+                showToast("手机号码格式有误")
+            }
 
         }
 

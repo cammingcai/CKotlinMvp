@@ -91,7 +91,7 @@ class EventBusFragment :XBaseFragment<MvpKtPresenter>() {
                         mNewAdapter.setNewData(model.data)
 
                     } else {
-                        mNewAdapter.addData(model.data)
+                        mNewAdapter.addData(model.data!!)
                     }
                 }
 

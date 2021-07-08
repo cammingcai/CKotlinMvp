@@ -5,6 +5,7 @@ import com.camming.mvp.ui.fragment.BaseFragment
 import com.example.kotlinmvp.model.news.NewsTitleData
 import com.example.kotlinmvp.mvp.MvpKtPresenter
 import com.example.kotlinmvp.ui.adapter.PViewPagerAdapter
+import com.example.kotlinmvp.ui.fragment.CollapsingToolbarFragment
 import kotlinx.android.synthetic.main.activity_news.*
 
 
@@ -39,6 +40,8 @@ class NewsFragment :BaseFragment(){
 
 
         var newTabTitles = mutableListOf<String>()
+        newTabTitles.add("沉浸式")
+        newsFragments.add(CollapsingToolbarFragment())
 //        newsLists.clear()
         enumValues<News>().forEach {
             newTabTitles.add(it.newName)

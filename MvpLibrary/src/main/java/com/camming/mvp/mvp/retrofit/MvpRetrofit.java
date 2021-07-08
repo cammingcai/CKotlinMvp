@@ -42,7 +42,11 @@ public class MvpRetrofit {
         retrofit();
     }
 
-    public  Retrofit retrofit() {
+    public Retrofit getRetrofit(){
+        return mRetrofit;
+    }
+
+    private  Retrofit retrofit() {
         if (mRetrofit == null) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
             /**

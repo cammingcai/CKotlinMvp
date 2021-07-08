@@ -9,6 +9,8 @@ import com.camming.mvp.mvp.retrofit.MvpRetrofit
 class Api {
 
     companion object{
-        var mApi = MvpRetrofit.getInstance().retrofit().create<RetrofitMvpApi>(RetrofitMvpApi:: class.java)
+        //baseUrl
+        var API_SERVER_URL = "http://v.juhe.cn/"
+        var mApi = MvpRetrofit.getInstance().retrofit.create<RetrofitMvpApi>(RetrofitMvpApi::class.java)
     }
 }

@@ -14,6 +14,7 @@ import com.camming.mvp.utils.ScreenUtils
 import com.camming.mvp.utils.StatusBarUtil
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import qiu.niorgai.StatusBarCompat
 
 
 /**
@@ -28,8 +29,8 @@ abstract class XBaseActivit<P : BasePresenter<*>>: BaseActivity() {
     public override  fun onCreate(savedInstanceState: Bundle?) {
         mvpPresenter = createPresenter()
         super.onCreate(savedInstanceState)
-        StatusBarUtil.immersive(this)
-//        StatusBarUtil.justMDarkMode(this, mIsDarkMode)
+//        StatusBarUtil.immersive(this)
+        StatusBarCompat.translucentStatusBar(this)
         EventBus.getDefault().register(this)
     }
 
@@ -48,7 +49,7 @@ abstract class XBaseActivit<P : BasePresenter<*>>: BaseActivity() {
 
     protected abstract fun createPresenter(): P
     //适配刘海屏相关
-    fun getNotchHeight(onOk: (height: Int) -> Unit){
+    private fun getNotchHeight(onOk: (height: Int) -> Unit){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
             //google官方接口
             val decorView: View = window.decorView
@@ -63,18 +64,7 @@ abstract class XBaseActivit<P : BasePresenter<*>>: BaseActivity() {
                 val displayCutout: DisplayCutout = rootWindowInsets.displayCutout!!
                 onOk.invoke(displayCutout.safeInsetTop)
 //                Log.e("TAG", "安全区域距离屏幕左边的距离 SafeInsetLeft:" + displayCutout.getSafeInsetLeft())
-//                Log.e("TAG", "安全区域距离屏幕右部的距离 SafeInsetRight:" + displayCutout.getSafeInsetRight())
-//                Log.e("TAG", "安全区域距离屏幕顶部的距离 SafeInsetTop:" + displayCutout.getSafeInsetTop())
-//                Log.e("TAG", "安全区域距离屏幕底部的距离 SafeInsetBottom:" + displayCutout.getSafeInsetBottom())
-//                val rects: List<Rect> = displayCutout.getBoundingRects()
-//                if (rects == null || rects.isEmpty()) {
-//                    Log.e("TAG", "不是刘海屏")
-//                } else {
-//                    Log.e("TAG", "刘海屏数量:" + rects.size())
-//                    for (rect in rects) {
-//                        Log.e("TAG", "刘海屏区域：$rect")
-//                    }
-//                }
+
             })
         }else{
             //厂商接口(暂未适配小米)
@@ -94,14 +84,7 @@ abstract class XBaseActivit<P : BasePresenter<*>>: BaseActivity() {
             }
         }
     }
-//    /**设置自定义HRCustomToolbar的顶部状态栏的高度*/
-//    fun adaptiveNotchScreen(toolbar:HRCustomToolbar?){
-//        toolbar?.let {bar->
-//            getNotchHeight { h->
-//                bar.setNotchHeight(h)
-//            }
-//        }
-//    }
+
 
     /**将指定view的高度设置为状态栏的高度*/
     fun adaptiveNotchScreenByView(v: View?){

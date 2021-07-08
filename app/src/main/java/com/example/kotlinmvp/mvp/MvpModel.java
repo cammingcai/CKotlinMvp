@@ -18,7 +18,7 @@ public class MvpModel implements BaseModel {
 
     public RetrofitMvpApi getRetrofitMvpApi() {
         if(mRetrofitMvpApi==null)
-            mRetrofitMvpApi = MvpRetrofit.getInstance().retrofit().create(RetrofitMvpApi.class);
+            mRetrofitMvpApi = MvpRetrofit.getInstance().getRetrofit().create(RetrofitMvpApi.class);
         return mRetrofitMvpApi;
     }
 }

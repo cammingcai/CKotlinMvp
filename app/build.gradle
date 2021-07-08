@@ -48,4 +48,5 @@ dependencies {
     implementation project(':MvpLibrary')
     implementation project(':library:FlycoTabLayout_Lib')
     implementation project(':library:xupdate')
+    implementation project(':library:StatusBarlibrary')
 }

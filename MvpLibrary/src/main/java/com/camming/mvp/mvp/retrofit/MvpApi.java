@@ -21,6 +21,7 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
+ * API DEMO
  *  @ Headers 添加请求头
  *  @ Path 替换路径
  *  @ Query 替代参数值，通常是结合get请求的 (GET请求):用于在url后拼接上参数

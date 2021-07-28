@@ -12,6 +12,8 @@ import com.camming.mvp.ui.BaseActivity
 import com.camming.mvp.utils.NotchScreenUtil
 import com.camming.mvp.utils.ScreenUtils
 import com.camming.mvp.utils.StatusBarUtil
+import com.example.kotlinmvp.MvpExpands.hideLoading
+import com.example.kotlinmvp.MvpExpands.showLoading
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import qiu.niorgai.StatusBarCompat
@@ -20,7 +22,7 @@ import qiu.niorgai.StatusBarCompat
 /**
  * Create by Cabbage Camming 2021/4/6.
  */
-abstract class XBaseActivit<P : BasePresenter<*>>: BaseActivity() {
+abstract class XBaseActivity<P : BasePresenter<*>>: BaseActivity() {
 
     abstract val activityName: String
     protected var mIsDarkMode = true
@@ -37,6 +39,14 @@ abstract class XBaseActivit<P : BasePresenter<*>>: BaseActivity() {
     override fun onResume() {
         super.onResume()
 
+    }
+
+    override fun showBaseLoading(msg: String) {
+        showLoading(msg)
+    }
+
+    override fun dissmissBaseLoading() {
+        hideLoading()
     }
     override fun getResources(): Resources {
         // 字体大小不跟随系统

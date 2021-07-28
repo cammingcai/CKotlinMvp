@@ -14,9 +14,6 @@ import com.camming.mvp.utils.StatusBarUtil;
 
  */
 public abstract class BaseActivity extends XActivity {
-    public Activity mActivity;
-//    private CompositeDisposable mCompositeDisposable;
-//    private List<Call> calls;
 
 
     @Override
@@ -26,24 +23,14 @@ public abstract class BaseActivity extends XActivity {
 
     }
 
+    public abstract void showBaseLoading(String msg);
+    public abstract void dissmissBaseLoading();
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
-        mActivity = this;
+
     }
 
-
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        mActivity = this;
-    }
-
-    @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        super.setContentView(view, params);
-        mActivity = this;
-    }
 
 
     @Override

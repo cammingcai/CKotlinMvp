@@ -16,21 +16,21 @@ public class MvpKtPresenter extends BasePresenter<MvpViewCallback> {
         mMvpModel = new MvpModel();
     }
 
-
-    public void queryPhoneArea(String phone){
-
-        mMvpModel.getRetrofitMvpApi().queryPhone("374feaa91ac57e84e159505d0e78ed05",phone).enqueue(new MyRetrofitCallback<PhoneData>() {
-            @Override
-            public void onSuccess(PhoneData model) {
-                mvpView.getDataSuccess(model);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mvpView.getDataFail(msg);
-            }
-        });
-    }
+//
+//    public void queryPhoneArea(String phone){
+//
+//        mMvpModel.getRetrofitMvpApi().queryPhone("374feaa91ac57e84e159505d0e78ed05",phone).enqueue(new MyRetrofitCallback<PhoneData>() {
+//            @Override
+//            public void onSuccess(PhoneData model) {
+//                mvpView.getDataSuccess(model);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                mvpView.getDataFail(msg);
+//            }
+//        });
+//    }
     public void queryPhoneArea(String phone,MyRetrofitCallback callback){
 
         mMvpModel.getRetrofitMvpApi().queryPhone("374feaa91ac57e84e159505d0e78ed05",phone).enqueue(callback);

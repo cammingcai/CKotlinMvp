@@ -3,6 +3,7 @@ package com.example.kotlinmvp
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.camming.mvp.ui.BaseActivity
 import com.example.kotlinmvp.MvpExpands.showToast
 import com.example.kotlinmvp.event.MessageEvent
 import com.example.kotlinmvp.model.news.NewsBean
@@ -34,7 +35,7 @@ class EventBusFragment :XBaseFragment<MvpKtPresenter>() {
 
     override fun createPresenter() =  MvpKtPresenter(null)
 
-    override fun getFragmentLayoutId(): Int = R.layout.fragment_event_bus
+    override fun getLayoutId(): Int = R.layout.fragment_event_bus
 
     override fun initView() {
         var manager  = LinearLayoutManager(activity)
@@ -63,6 +64,9 @@ class EventBusFragment :XBaseFragment<MvpKtPresenter>() {
         showToast("${fragmentName}${event.message}\"")
     }
 
+    override fun initListener() {
+
+    }
     private var mPage =1
     private var mPageSize =10
     override fun initData() {
@@ -82,7 +86,7 @@ class EventBusFragment :XBaseFragment<MvpKtPresenter>() {
             mType,
             page.toString(),
             mPageSize.toString(),
-            object : MyRetrofitCallback<NewsBean>() {
+            object : MyRetrofitCallback<NewsBean>(activity as BaseActivity) {
                 override fun onSuccess(model: NewsBean) {
                     rv_news.refreshController().refreshComplete()
                     rv_news.loadMoreController().loadMoreComplete()

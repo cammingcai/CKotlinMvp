@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/img_full_screen"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +32,6 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:visibility="gone"
         android:background="@color/transparent"
         android:hint="输入手机号码"
         />
@@ -46,7 +40,6 @@
         android:id="@+id/btn_query"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:visibility="gone"
         android:text="查询归属地"
         />
 

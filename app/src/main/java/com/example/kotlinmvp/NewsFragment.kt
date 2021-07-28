@@ -24,7 +24,7 @@ class NewsFragment :BaseFragment(){
     }
 
 
-    override fun getFragmentLayoutId(): Int  = R.layout.activity_news
+    override fun getLayoutId(): Int  = R.layout.activity_news
 
     override fun initView() {
 
@@ -35,7 +35,9 @@ class NewsFragment :BaseFragment(){
 //        showToast("${fragmentName}${event.message}\"")
 //    }
 
+    override fun initListener() {
 
+    }
     override fun initData() {
 
 

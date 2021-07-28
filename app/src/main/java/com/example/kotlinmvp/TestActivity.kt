@@ -3,7 +3,6 @@ package com.example.kotlinmvp
 import android.util.Log
 import com.camming.mvp.mvp.MvpViewCallback
 import com.camming.mvp.utils.XRegexUtils
-import com.example.kotlinmvp.MvpExpands.hideLoading
 import com.example.kotlinmvp.MvpExpands.showLoading
 import com.example.kotlinmvp.MvpExpands.showToast
 
@@ -15,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class TestActivity : XBaseActivit<MvpKtPresenter>() {
+class TestActivity : XBaseActivity<MvpKtPresenter>() {
 
     override val activityName: String get() = "TestActivity"
 //    data class CammingData(var id:String,var name:String,var url:String)
@@ -33,15 +32,15 @@ class TestActivity : XBaseActivit<MvpKtPresenter>() {
             if(XRegexUtils.checkPhone(phone)){
 
                     showLoading("查询中")
-                mvpPresenter?.queryPhoneArea(phone,object : MyRetrofitCallback<PhoneData>() {
+                mvpPresenter?.queryPhoneArea(phone,object : MyRetrofitCallback<PhoneData>(this) {
                     override fun onSuccess(model: PhoneData) {
                         tv_content.text = "查询成功=${model.toString()}"
-                        hideLoading()
+
                     }
 
                     override fun onFailure(msg: String) {
                         tv_content.text ="查询失败=${msg}"
-                        hideLoading()
+
                     }
                 })
 
@@ -51,9 +50,6 @@ class TestActivity : XBaseActivit<MvpKtPresenter>() {
             }
 
         }
-
-
-//        startActivity(Intent(this,TestLitepalActivity::class.java))
 
 
         var be = supportFragmentManager.beginTransaction()
@@ -80,10 +76,6 @@ class TestActivity : XBaseActivit<MvpKtPresenter>() {
 //        rsa.keyPairGenerator()
 //
 //        var result =  rsa.decryptByPublicKey2(keyData)
-//        Log.i("MainActivity","initData result=${result}")
-//        Log.e("MainActivity","initData result=${result}")
-
-
 
 
         //Retrofit +OKHTTP+Rxjava请求

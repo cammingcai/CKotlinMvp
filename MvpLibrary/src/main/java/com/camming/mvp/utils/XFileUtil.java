@@ -507,5 +507,57 @@ public class XFileUtil {
 
     }
 
+    /**
+     * 复制文件
+     *
+     * @param fromFile         原文件
+     * @param toFile           目标文件
+     * @param rewrite          是否覆盖
+     * @param isDeleteFromFile 复制完成是否删除原文件
+     * @return 是否复制成功
+     */
+    public static boolean copyFile(File fromFile, File toFile, Boolean rewrite,
+                                   Boolean isDeleteFromFile) {
+        if (!fromFile.exists() || !fromFile.isFile() || !fromFile.canRead()) {
+            return false;
+        }
+        if (toFile.exists() && rewrite) {
+            toFile.delete();
+        }
+        FileInputStream from = null;
+        FileOutputStream to = null;
+        boolean isSuccess = true;
+        try {
+            from = new FileInputStream(fromFile);
+            to = new FileOutputStream(toFile);
+            byte[] content = new byte[1024];
+            int reads = 0;
+            while ((reads = from.read(content)) > 0) {
+                to.write(content, 0, reads);
+            }
+            to.flush();
+        } catch (Exception ex) {
+            isSuccess = false;
+        } finally {
+            if (from != null) {
+                try {
+                    from.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (to != null) {
+                try {
+                    to.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (isDeleteFromFile && isSuccess) {
+                fromFile.delete();
+            }
+        }
+        return isSuccess;
+    }
 
 }

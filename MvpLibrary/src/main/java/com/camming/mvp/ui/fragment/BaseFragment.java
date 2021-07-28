@@ -46,11 +46,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =null ;
-        if(getFragmentLayoutId()>0){
-            view  = inflater.inflate(getFragmentLayoutId(), null);
+        if(getLayoutId()>0){
+            view  = inflater.inflate(getLayoutId(), null);
 //            unbinder = ButterKnife.bind(this,view);
-
-
             //unbinder = ButterKnife.bind(view);//这个方法在fragment 无效
         }else {
             return super.onCreateView(inflater, container, savedInstanceState);
@@ -75,7 +73,7 @@ public abstract class BaseFragment extends Fragment {
         }else{
             initData();
         }
-
+        initListener();
     }
     /**
      * 启用懒加载，就是仅仅在fragment第一次可见的时候加载数据
@@ -84,14 +82,14 @@ public abstract class BaseFragment extends Fragment {
         return false;
     }
 
-    public abstract int getFragmentLayoutId();
+    public abstract int getLayoutId();
     public abstract void initView();
 
     /**
      * 懒加载
      */
     public abstract void initData();
-
+    public abstract void initListener();
     @Override
     public void onDestroy() {
         super.onDestroy();
